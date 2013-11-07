@@ -196,7 +196,9 @@ public class BasicNetwork implements Network {
 
         if (entry.serverDate > 0) {
             Date refTime = new Date(entry.serverDate);
-            headers.put("If-Modified-Since", DateUtils.formatDate(refTime));
+            // On Android 4.3 formatDate adds timezone after GMT, 
+            // server then cannot parse the date, and caching breaks :( 
+            headers.put("If-Modified-Since", DateUtils.formatDate(refTime).replace("+00:00", ""));
         }
     }
 
