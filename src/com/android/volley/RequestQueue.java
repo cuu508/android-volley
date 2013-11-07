@@ -194,6 +194,14 @@ public class RequestQueue {
     }
 
     /**
+     * Returns number of requests this queue is currently processing.
+     */
+    public int getNetworkRequestCount() {
+    	return mNetworkQueue.size();        
+    }
+    
+    
+    /**
      * Cancels all requests in this queue with the given tag. Tag must be non-null
      * and equality is by identity.
      */
